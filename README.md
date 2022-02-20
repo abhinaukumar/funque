@@ -1,4 +1,4 @@
-# FUNQUE
+# FUNQUE: Fusion of Unified Quality Evaluators
 The official Python implementation of the FUNQUE framework for Video Quality Assessment (VQA), which provides both a significant improvement in performance compared to VMAF, couple with a drastic reduction in computational complexity.
 In addition, we also provide the pretrained FUNQUE model for use off-the-shelf, under `models/`. A major part of this code has been forked from the Python library in Netflix's VMAF repository [1]. A summary of FUNQUE is below.
 For more details, refer to "FUNQUE: Fusion of Unified Quality Evaluators".
