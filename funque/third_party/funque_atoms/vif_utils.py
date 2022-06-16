@@ -124,8 +124,8 @@ def vif_channel_est(pyr_ref, pyr_dist, subband_keys, M):
 
 
 def vif_spatial(img_ref, img_dist, k=11, sigma_nsq=0.1, stride=1, full=False):
-    x = img_ref.astype('float32')
-    y = img_dist.astype('float32')
+    x = img_ref
+    y = img_dist
 
     _, _, var_x, var_y, cov_xy = moments(x, y, k, stride)
 
