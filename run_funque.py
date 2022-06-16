@@ -26,11 +26,20 @@ FMTS = ['yuv420p', 'yuv422p', 'yuv444p',
 OUT_FMTS = ['text (default)', 'xml', 'json']
 POOL_METHODS = ['mean', 'harmonic_mean', 'min', 'median', 'perc5', 'perc10', 'perc20']
 
+def str2bool(v):
+    if isinstance(v, bool):
+       return v
+    if v.lower() in ('yes', 'y', 'true', 't', '1'):
+        return True
+    elif v.lower() in ('no', 'n', 'false', 'f', '0'):
+        return False
+    else:
+        raise Exception("The string is invalid")
 
 def print_usage():
     print("usage: " + os.path.basename(sys.argv[0]) \
           + " fmt width height ref_path dis_path [--model model_path] [--out-fmt out_fmt] " \
-            "[--phone-model] [--ci] [--save-plot plot_dir]\n")
+            "[--phone-model] [--ci] [--save-plot plot_dir] [--enable_resizer true/false]\n")
     print("fmt:\n\t" + "\n\t".join(FMTS) + "\n")
     print("out_fmt:\n\t" + "\n\t".join(OUT_FMTS) + "\n")
 
@@ -46,6 +55,10 @@ def main():
         height = int(sys.argv[3])
         ref_file = sys.argv[4]
         dis_file = sys.argv[5]
+
+        enable_resizer_str = get_cmd_option(sys.argv, 6, len(sys.argv), '--enable_resizer')
+        enable_resizer = str2bool(enable_resizer_str) if enable_resizer_str else True
+
     except ValueError:
         print_usage()
         return 2
@@ -93,7 +106,8 @@ def main():
                   workdir_root=FunqueConfig.workdir_path(),
                   ref_path=ref_file,
                   dis_path=dis_file,
-                  asset_dict={'width':width, 'height':height, 'yuv_type':fmt}
+                  asset_dict={'width':width, 'height':height, 'yuv_type':fmt},
+                  enable_resizer=enable_resizer
                   )
     assets = [asset]
 
