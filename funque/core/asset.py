@@ -50,7 +50,8 @@ class Asset(WorkdirEnabled):
     def __init__(self, dataset, content_id, asset_id,
                  ref_path, dis_path,
                  asset_dict,
-                 workdir_root=FunqueConfig.workdir_path()):
+                 workdir_root=FunqueConfig.workdir_path(),
+                 enable_resizer=True):
         """
         :param dataset
         :param content_id: ID of content the asset correspond to within dataset
@@ -68,6 +69,7 @@ class Asset(WorkdirEnabled):
         self.ref_path = ref_path
         self.dis_path = dis_path
         self.asset_dict = asset_dict
+        self.enable_resizer = enable_resizer
 
         self._assert()
 

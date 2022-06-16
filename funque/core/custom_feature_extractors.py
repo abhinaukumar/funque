@@ -214,8 +214,9 @@ class FunqueFeatureExtractor(VmafexecFeatureExtractorMixin, FeatureExtractor):
                         y_dis, _, _ = yuv_dis
 
                         # Apply SAST.
-                        y_ref = cv2.resize(y_ref, (w//2, h//2), interpolation=cv2.INTER_CUBIC)
-                        y_dis = cv2.resize(y_dis, (w//2, h//2), interpolation=cv2.INTER_CUBIC)
+                        if asset.enable_resizer:
+                            y_ref = cv2.resize(y_ref, (w//2, h//2), interpolation=cv2.INTER_CUBIC)
+                            y_dis = cv2.resize(y_dis, (w//2, h//2), interpolation=cv2.INTER_CUBIC)
 
                         if ref_yuv_reader._is_8bit():
                             y_ref = y_ref.astype(np.double) / (2.0**8 - 1.0)
