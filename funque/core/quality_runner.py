@@ -328,7 +328,7 @@ class FunqueQualityRunnerModelMixin(object):
 
 
 class FunqueQualityRunner(FunqueQualityRunnerModelMixin, QualityRunner):
-    TYPE = 'VMAF'
+    TYPE = 'FUNQUE'
 
     # VERSION = '0.1' # using model nflxall_vmafv1.pkl, VmafFeatureExtractor VERSION 0.1
     # DEFAULT_MODEL_FILEPATH = FunqueConfig.model_path("nflxall_vmafv1.pkl") # trained with resource/param/vmaf_v1.py on private/resource/dataset/NFLX_dataset.py (30 subjects)
